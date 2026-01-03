@@ -143,7 +143,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
     
     # Install appropriate version of libssl1.0.x if available
     libssl_package=$(dpkg-query -f '${db:Status-Abbrev}\t${binary:Package}\n' -W 'libssl1\.0\.?' 2>&1 || echo '')
-    if [ "$(echo "$LIlibssl_packageBSSL" | grep -o 'libssl1\.0\.[0-9]:' | uniq | sort | wc -l)" -eq 0 ]; then
+    if [ "$(echo "$libssl_package" | grep -o 'libssl1\.0\.[0-9]:' | uniq | sort | wc -l)" -eq 0 ]; then
         if [[ ! -z $(apt-cache --names-only search ^libssl1.0.2$) ]]; then
             # Debian 9
             package_list="${package_list}       libssl1.0.2"
